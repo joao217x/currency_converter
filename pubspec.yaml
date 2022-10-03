@@ -33,6 +33,7 @@ dependencies:
 
   #UX/UI
   another_flushbar: ^1.12.29
+  mask_text_input_formatter: ^2.4.0
 
 dev_dependencies:
   flutter_test:
