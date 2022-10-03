@@ -1,4 +1,4 @@
-import 'package:currency_converter/shared/services/firebase_client.dart';
+import 'package:currency_converter/features/login/services/firebase_client.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:mobx/mobx.dart';
 part 'login_firebase_controller.g.dart';
@@ -9,14 +9,13 @@ class LoginFirebaseController = _LoginFirebaseControllerBase
 abstract class _LoginFirebaseControllerBase with Store {
   FirebaseClient firebaseClient = FirebaseClient();
 
-
-  //Váriavel se está logado
+  // Váriavel que diz se está logado
   @observable
   bool isLogged = false;
   @action
   void setIsLogged(bool value) => isLogged = value;
 
-  //
+  // Método que verifica se está logado
   @action
   void checkLogged() {
     if (FirebaseAuth.instance.currentUser != null) {
@@ -26,12 +25,7 @@ abstract class _LoginFirebaseControllerBase with Store {
     }
   }
 
-  @action
-  Future<void> logout() async {
-    await firebaseClient.logoutFirebase();
-    setIsLogged(false);
-  }
-
+  // Método que loga
   @action
   Future<UserCredential> logIn({
     required String email,
@@ -47,18 +41,10 @@ abstract class _LoginFirebaseControllerBase with Store {
     }
   }
 
-  // Future<void> pwReset({
-  //   required email,
-  //   required bool resetResult,
-  // }) async {
-  //   try {
-  //     await firebaseClient.pwResetFirebase(email: pwRecover);
-  //     setResetResultState(true);
-  //     resetResult = resetResultState;
-  //   } catch (e) {
-  //     log(e.toString());
-  //     setResetResultState(false);
-  //     resetResult = resetResultState;
-  //   }
-  // }
+  // Método que desloga
+  @action
+  Future<void> logout() async {
+    await firebaseClient.logoutFirebase();
+    setIsLogged(false);
+  }
 }
