@@ -4,21 +4,19 @@ part 'login_store.g.dart';
 class LoginStore = _LoginStoreBase with _$LoginStore;
 
 abstract class _LoginStoreBase with Store {
+  // Váriavel do email do usuário
   @observable
   String user = '';
   @action
   void setUser(String value) => user = value;
 
+  // Váriavel da senha do usuário
   @observable
   String password = '';
   @action
   void setPassword(String value) => password = value;
 
-  @observable
-  String pwRecover = '';
-  @action
-  void setPwRecover(String value) => pwRecover = value;
-
+  // Variável e metódo que escondem a senha
   @observable
   bool isHidden = true;
   @action

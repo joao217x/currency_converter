@@ -17,14 +17,6 @@ class FirebaseClient {
     }
   }
 
-  Future<void> pwResetFirebase({required email}) async {
-    try {
-      await instance.sendPasswordResetEmail(email: email);
-    } on FirebaseAuthException catch (e) {
-      throw e.toString();
-    }
-  }
-
   Future<void> logoutFirebase() async {
     try {
       await instance.signOut();

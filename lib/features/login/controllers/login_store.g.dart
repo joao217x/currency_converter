@@ -40,22 +40,6 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     });
   }
 
-  late final _$pwRecoverAtom =
-      Atom(name: '_LoginStoreBase.pwRecover', context: context);
-
-  @override
-  String get pwRecover {
-    _$pwRecoverAtom.reportRead();
-    return super.pwRecover;
-  }
-
-  @override
-  set pwRecover(String value) {
-    _$pwRecoverAtom.reportWrite(value, super.pwRecover, () {
-      super.pwRecover = value;
-    });
-  }
-
   late final _$isHiddenAtom =
       Atom(name: '_LoginStoreBase.isHidden', context: context);
 
@@ -98,17 +82,6 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   }
 
   @override
-  void setPwRecover(String value) {
-    final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
-        name: '_LoginStoreBase.setPwRecover');
-    try {
-      return super.setPwRecover(value);
-    } finally {
-      _$_LoginStoreBaseActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
   void togglePasswordVisibility() {
     final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
         name: '_LoginStoreBase.togglePasswordVisibility');
@@ -124,7 +97,6 @@ mixin _$LoginStore on _LoginStoreBase, Store {
     return '''
 user: ${user},
 password: ${password},
-pwRecover: ${pwRecover},
 isHidden: ${isHidden}
     ''';
   }

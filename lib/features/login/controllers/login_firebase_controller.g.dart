@@ -25,14 +25,6 @@ mixin _$LoginFirebaseController on _LoginFirebaseControllerBase, Store {
     });
   }
 
-  late final _$logoutAsyncAction =
-      AsyncAction('_LoginFirebaseControllerBase.logout', context: context);
-
-  @override
-  Future<void> logout() {
-    return _$logoutAsyncAction.run(() => super.logout());
-  }
-
   late final _$logInAsyncAction =
       AsyncAction('_LoginFirebaseControllerBase.logIn', context: context);
 
@@ -41,6 +33,14 @@ mixin _$LoginFirebaseController on _LoginFirebaseControllerBase, Store {
       {required String email, required String password}) {
     return _$logInAsyncAction
         .run(() => super.logIn(email: email, password: password));
+  }
+
+  late final _$logoutAsyncAction =
+      AsyncAction('_LoginFirebaseControllerBase.logout', context: context);
+
+  @override
+  Future<void> logout() {
+    return _$logoutAsyncAction.run(() => super.logout());
   }
 
   late final _$_LoginFirebaseControllerBaseActionController =

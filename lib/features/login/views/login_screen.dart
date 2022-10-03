@@ -31,8 +31,6 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   _passwordField(context),
                   const SizedBox(height: 10),
-                  _passwordForgot(context),
-                  const SizedBox(height: 10),
                   _signIn(),
                 ],
               ),
@@ -93,18 +91,6 @@ class LoginScreen extends StatelessWidget {
             ? const Icon(Icons.visibility_off)
             : const Icon(Icons.visibility),
       ),
-    );
-  }
-
-  Widget _passwordForgot(context) {
-    return GestureDetector(
-      child: const Text(
-        'Esqueceu a senha?',
-        style: TextStyle(color: Colors.blue),
-      ),
-      onTap: () {
-        // Navigator.popAndPushNamed(context, '/forget');
-      },
     );
   }
 
