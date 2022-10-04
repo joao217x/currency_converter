@@ -14,8 +14,8 @@ class CurrencyConverter extends StatelessWidget {
           // '/login',
       routes: {
         '/splash': (context) => const SplashScreen(),
-        // '/home': (context) => const HomeScreen(),
         '/login': (context) => const LoginScreen(),
+        // '/home': (context) => const HomeScreen(),
         // '/favorites': (context) => const FavoritesScreen(),
       },
     );
