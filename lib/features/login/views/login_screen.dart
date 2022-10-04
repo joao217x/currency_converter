@@ -1,6 +1,8 @@
+import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
 import 'package:currency_converter/features/login/controllers/login_store.dart';
 import 'package:currency_converter/shared/components/elevated_button_widget.dart';
 import 'package:currency_converter/shared/components/txt_form_field_widget.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
@@ -31,7 +33,7 @@ class LoginScreen extends StatelessWidget {
                   const SizedBox(height: 10),
                   _passwordField(context),
                   const SizedBox(height: 10),
-                  _signIn(),
+                  _signIn(context),
                 ],
               ),
             ),
@@ -69,7 +71,7 @@ class LoginScreen extends StatelessWidget {
 
     return TxtFormFieldWidget(
       onChanged: (String value) {
-        loginStore.setUser(value);
+        loginStore.setEmail(value);
       },
       labelText: 'E-mail',
       keyboardType: TextInputType.emailAddress,
@@ -94,13 +96,24 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _signIn() {
+  Widget _signIn(context) {
+    final firebaseController = LoginFirebaseController();
+    final loginStore = Provider.of<LoginStore>(context, listen: false);
+
     return Row(
       children: [
         Expanded(
           child: ElevatedButtonWidget(
             text: 'ENTRAR',
-            onPressed: () {},
+            onPressed: () async {
+              final result = await firebaseController.logIn(
+                email: loginStore.email,
+                password: loginStore.password,
+              );
+              if (result.runtimeType == UserCredential) {
+                Navigator.popAndPushNamed(context, '/home');
+              }
+            },
           ),
         ),
       ],

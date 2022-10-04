@@ -6,9 +6,9 @@ class LoginStore = _LoginStoreBase with _$LoginStore;
 abstract class _LoginStoreBase with Store {
   // Váriavel do email do usuário
   @observable
-  String user = '';
+  String email = '';
   @action
-  void setUser(String value) => user = value;
+  void setEmail(String value) => email = value;
 
   // Váriavel da senha do usuário
   @observable

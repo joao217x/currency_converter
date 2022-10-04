@@ -9,18 +9,19 @@ part of 'login_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$LoginStore on _LoginStoreBase, Store {
-  late final _$userAtom = Atom(name: '_LoginStoreBase.user', context: context);
+  late final _$emailAtom =
+      Atom(name: '_LoginStoreBase.email', context: context);
 
   @override
-  String get user {
-    _$userAtom.reportRead();
-    return super.user;
+  String get email {
+    _$emailAtom.reportRead();
+    return super.email;
   }
 
   @override
-  set user(String value) {
-    _$userAtom.reportWrite(value, super.user, () {
-      super.user = value;
+  set email(String value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
@@ -60,11 +61,11 @@ mixin _$LoginStore on _LoginStoreBase, Store {
       ActionController(name: '_LoginStoreBase', context: context);
 
   @override
-  void setUser(String value) {
+  void setEmail(String value) {
     final _$actionInfo = _$_LoginStoreBaseActionController.startAction(
-        name: '_LoginStoreBase.setUser');
+        name: '_LoginStoreBase.setEmail');
     try {
-      return super.setUser(value);
+      return super.setEmail(value);
     } finally {
       _$_LoginStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -95,7 +96,7 @@ mixin _$LoginStore on _LoginStoreBase, Store {
   @override
   String toString() {
     return '''
-user: ${user},
+email: ${email},
 password: ${password},
 isHidden: ${isHidden}
     ''';
