@@ -10,8 +10,8 @@ class CurrencyConverter extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       initialRoute:
-          // '/splash',
-          '/login',
+          '/splash',
+          // '/login',
       routes: {
         '/splash': (context) => const SplashScreen(),
         // '/home': (context) => const HomeScreen(),

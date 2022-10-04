@@ -22,11 +22,11 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      // backgroundColor: AppColor.purple,
-      body: Center(
-          // child: SvgPicture.asset('assets/splash.svg'),
-          ),
+    return Scaffold(
+      backgroundColor: Colors.green.shade500,
+      body: const Center(
+        child: Icon(Icons.monetization_on, size: 80),
+      ),
     );
   }
 }
