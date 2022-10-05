@@ -1,3 +1,4 @@
+import 'package:currency_converter/features/home/views/home_screen.dart';
 import 'package:currency_converter/features/login/views/login_screen.dart';
 import 'package:currency_converter/features/splash/views/splash.dart';
 import 'package:flutter/material.dart';
@@ -9,14 +10,12 @@ class CurrencyConverter extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute:
-          '/splash',
-          // '/login',
+      initialRoute: '/splash',
       routes: {
         '/splash': (context) => const SplashScreen(),
         '/login': (context) => const LoginScreen(),
-        // '/home': (context) => const HomeScreen(),
-        // '/favorites': (context) => const FavoritesScreen(),
+        '/home': (context) => const HomeScreen(),
+        // '/currencies': (context) => const CurrenciesScreen(),
       },
     );
   }

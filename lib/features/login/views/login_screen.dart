@@ -4,6 +4,7 @@ import 'package:currency_converter/shared/components/elevated_button_widget.dart
 import 'package:currency_converter/shared/components/txt_form_field_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:provider/provider.dart';
 
@@ -16,29 +17,31 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _content(context) {
-    return Scaffold(
-      body: SingleChildScrollView(
-        child: Observer(builder: (context) {
-          return Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 30),
-              child: Column(
-                children: [
-                  const SizedBox(height: 80),
-                  _appIconAndName(),
-                  const SizedBox(height: 120),
-                  _loginLabel(context),
-                  const SizedBox(height: 15),
-                  _emailField(context),
-                  const SizedBox(height: 10),
-                  _passwordField(context),
-                  const SizedBox(height: 10),
-                  _signIn(context),
-                ],
+    return KeyboardDismissOnTap(
+      child: Scaffold(
+        body: SingleChildScrollView(
+          child: Observer(builder: (context) {
+            return Center(
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 30),
+                child: Column(
+                  children: [
+                    const SizedBox(height: 80),
+                    _appIconAndName(),
+                    const SizedBox(height: 120),
+                    _loginLabel(context),
+                    const SizedBox(height: 15),
+                    _emailField(context),
+                    const SizedBox(height: 10),
+                    _passwordField(context),
+                    const SizedBox(height: 10),
+                    _signIn(context),
+                  ],
+                ),
               ),
-            ),
-          );
-        }),
+            );
+          }),
+        ),
       ),
     );
   }
