@@ -1,11 +1,14 @@
 import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
 import 'package:currency_converter/features/login/controllers/login_store.dart';
+import 'package:currency_converter/features/login/controllers/errors/errors_controller.dart';
 import 'package:currency_converter/shared/components/elevated_button_widget.dart';
+import 'package:currency_converter/shared/components/loading_widget.dart';
 import 'package:currency_converter/shared/components/txt_form_field_widget.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -107,15 +110,23 @@ class LoginScreen extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButtonWidget(
-            text: 'ENTRAR',
+            child: loginStore.isLoading == true
+                ? LoadingWidget.loading
+                : const Text("ENTRAR"),
             onPressed: () async {
-              final result = await firebaseController.logIn(
-                email: loginStore.email,
-                password: loginStore.password,
-              );
-              if (result.runtimeType == UserCredential) {
-                Navigator.popAndPushNamed(context, '/home');
+              loginStore.setIsLoading(true);
+              try {
+                final result = await firebaseController.logIn(
+                  email: loginStore.email,
+                  password: loginStore.password,
+                );
+                if (result.runtimeType == UserCredential) {
+                  Navigator.popAndPushNamed(context, '/home');
+                }
+              } on Exception catch (e) {
+                await ErrorsController.errorSnackbar(e, context);
               }
+              loginStore.setIsLoading(false);
             },
           ),
         ),

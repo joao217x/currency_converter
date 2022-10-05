@@ -13,7 +13,7 @@ class FirebaseClient {
         password: password,
       );
     } on FirebaseAuthException catch (e) {
-      throw e.toString();
+      throw e;
     }
   }
 
@@ -21,7 +21,7 @@ class FirebaseClient {
     try {
       await instance.signOut();
     } on FirebaseAuthException catch (e) {
-      throw e.toString();
+      throw e;
     }
   }
 }
