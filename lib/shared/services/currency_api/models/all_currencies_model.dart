@@ -1,64 +1,47 @@
 import 'package:currency_converter/shared/services/currency_api/models/currency_model.dart';
 
 class AllCurrenciesModel {
-  CurrencyModel? uSDBRL;
-  CurrencyModel? aUDBRL;
-  CurrencyModel? cADBRL;
-  CurrencyModel? eURBRL;
-  CurrencyModel? jPYBRL;
-  CurrencyModel? gBPBRL;
-  CurrencyModel? cNYBRL;
+  CurrencyModel usdBrl;
+  CurrencyModel audBrl;
+  CurrencyModel cadBrl;
+  CurrencyModel eurBrl;
+  CurrencyModel jpyBrl;
+  CurrencyModel gbpBrl;
+  CurrencyModel cnyBrl;
 
   AllCurrenciesModel({
-    this.uSDBRL,
-    this.aUDBRL,
-    this.cADBRL,
-    this.eURBRL,
-    this.jPYBRL,
-    this.gBPBRL,
-    this.cNYBRL,
+    required this.usdBrl,
+    required this.audBrl,
+    required this.cadBrl,
+    required this.eurBrl,
+    required this.jpyBrl,
+    required this.gbpBrl,
+    required this.cnyBrl,
   });
 
-  AllCurrenciesModel.fromJson(Map<String, dynamic> json) {
-    uSDBRL =
-        json['USDBRL'] != null ? CurrencyModel.fromJson(json['USDBRL']) : null;
-    aUDBRL =
-        json['AUDBRL'] != null ? CurrencyModel.fromJson(json['AUDBRL']) : null;
-    cADBRL =
-        json['CADBRL'] != null ? CurrencyModel.fromJson(json['CADBRL']) : null;
-    eURBRL =
-        json['EURBRL'] != null ? CurrencyModel.fromJson(json['EURBRL']) : null;
-    jPYBRL =
-        json['JPYBRL'] != null ? CurrencyModel.fromJson(json['JPYBRL']) : null;
-    gBPBRL =
-        json['GBPBRL'] != null ? CurrencyModel.fromJson(json['GBPBRL']) : null;
-    cNYBRL =
-        json['CNYBRL'] != null ? CurrencyModel.fromJson(json['CNYBRL']) : null;
+  factory AllCurrenciesModel.fromJson(Map<String, dynamic> json) {
+    return AllCurrenciesModel(
+      usdBrl: CurrencyModel.fromJson(json['USDBRL']),
+      audBrl: CurrencyModel.fromJson(json['AUDBRL']),
+      cadBrl: CurrencyModel.fromJson(json['CADBRL']),
+      eurBrl: CurrencyModel.fromJson(json['EURBRL']),
+      jpyBrl: CurrencyModel.fromJson(json['JPYBRL']),
+      gbpBrl: CurrencyModel.fromJson(json['GBPBRL']),
+      cnyBrl: CurrencyModel.fromJson(json['CNYBRL']),
+    );
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
-    if (uSDBRL != null) {
-      data['USDBRL'] = uSDBRL!.toJson();
-    }
-    if (aUDBRL != null) {
-      data['AUDBRL'] = aUDBRL!.toJson();
-    }
-    if (cADBRL != null) {
-      data['CADBRL'] = cADBRL!.toJson();
-    }
-    if (eURBRL != null) {
-      data['EURBRL'] = eURBRL!.toJson();
-    }
-    if (jPYBRL != null) {
-      data['JPYBRL'] = jPYBRL!.toJson();
-    }
-    if (gBPBRL != null) {
-      data['GBPBRL'] = gBPBRL!.toJson();
-    }
-    if (cNYBRL != null) {
-      data['CNYBRL'] = cNYBRL!.toJson();
-    }
+
+    data['USDBRL'] = usdBrl.toJson();
+    data['AUDBRL'] = audBrl.toJson();
+    data['CADBRL'] = cadBrl.toJson();
+    data['EURBRL'] = eurBrl.toJson();
+    data['JPYBRL'] = jpyBrl.toJson();
+    data['GBPBRL'] = gbpBrl.toJson();
+    data['CNYBRL'] = cnyBrl.toJson();
+
     return data;
   }
 }

@@ -12,16 +12,16 @@ class FirebaseClient {
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException catch (_) {
+      rethrow;
     }
   }
 
   Future<void> logoutFirebase() async {
     try {
       await instance.signOut();
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException catch (_) {
+      rethrow;
     }
   }
 }

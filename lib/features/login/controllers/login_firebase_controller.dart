@@ -36,8 +36,8 @@ abstract class _LoginFirebaseControllerBase with Store {
         email: email,
         password: password,
       );
-    } on FirebaseAuthException catch (e) {
-      throw e;
+    } on FirebaseAuthException catch (_) {
+      rethrow;
     }
   }
 

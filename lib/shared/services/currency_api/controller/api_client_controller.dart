@@ -14,9 +14,9 @@ abstract class _ApiClientControllerBase with Store {
   Future<AllCurrenciesModel?> getCurrency() async {
     try {
       getResult = await client.getCurrencyClient();
-      return getResult;
     } catch (_) {
       getResult = null;
     }
+    return getResult;
   }
 }
