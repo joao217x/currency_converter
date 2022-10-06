@@ -8,7 +8,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
-import 'package:progress_indicators/progress_indicators.dart';
 import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -32,13 +31,13 @@ class LoginScreen extends StatelessWidget {
                     const SizedBox(height: 80),
                     _appIconAndName(),
                     const SizedBox(height: 120),
-                    _loginLabel(context),
+                    _logInLabel(context),
                     const SizedBox(height: 15),
                     _emailField(context),
                     const SizedBox(height: 10),
                     _passwordField(context),
                     const SizedBox(height: 10),
-                    _signIn(context),
+                    _logInButton(context),
                   ],
                 ),
               ),
@@ -65,7 +64,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _loginLabel(context) {
+  Widget _logInLabel(context) {
     return const Text(
       'LOGIN',
       style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -102,7 +101,7 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _signIn(context) {
+  Widget _logInButton(context) {
     final firebaseController = LoginFirebaseController();
     final loginStore = Provider.of<LoginStore>(context, listen: false);
 
