@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CurrencyRow extends StatelessWidget {
-  const CurrencyRow({Key? key}) : super(key: key);
+  final IconButton iconButton;
+
+  const CurrencyRow({
+    Key? key,
+    required this.iconButton,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -11,10 +16,7 @@ class CurrencyRow extends StatelessWidget {
         const Text("Sigla"),
         const Text("US20,00"),
         const Text("RS20,00"),
-        IconButton(
-          icon: const Icon(Icons.clear),
-          onPressed: () {},
-        ),
+        iconButton,
       ],
     );
   }
