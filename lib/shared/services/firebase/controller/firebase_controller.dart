@@ -1,4 +1,4 @@
-import 'package:currency_converter/features/login/service/firebase_client.dart';
+import 'package:currency_converter/shared/services/firebase/client/firebase_client.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseController {

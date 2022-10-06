@@ -1,4 +1,4 @@
-import 'package:currency_converter/features/login/controllers/firebase_controller.dart';
+import 'package:currency_converter/shared/services/firebase/controller/firebase_controller.dart';
 import 'package:currency_converter/features/login/controllers/login_store.dart';
 import 'package:currency_converter/features/login/controllers/errors/errors_controller.dart';
 import 'package:currency_converter/shared/components/elevated_button_widget.dart';
