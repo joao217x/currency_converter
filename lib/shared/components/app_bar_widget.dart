@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
 class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
-  AppBarWidget({Key? key}) : super(key: key);
+  final Function() onPressed;
+
+  AppBarWidget({Key? key, required this.onPressed}) : super(key: key);
 
   @override
   Size get preferredSize => const Size.fromHeight(56);
@@ -15,6 +17,9 @@ class AppBarWidget extends StatelessWidget with PreferredSizeWidget {
       shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(bottom: Radius.circular(30)),
       ),
+      actions: [
+        IconButton(onPressed: onPressed, icon: const Icon(Icons.logout_rounded))
+      ],
     );
   }
 }

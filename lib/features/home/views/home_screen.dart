@@ -1,3 +1,4 @@
+import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
 import 'package:currency_converter/shared/components/app_bar_widget.dart';
 import 'package:currency_converter/shared/components/currency_row_widget.dart';
 import 'package:currency_converter/shared/components/elevated_button_widget.dart';
@@ -14,6 +15,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  final firebaseController = LoginFirebaseController();
+
   @override
   Widget build(BuildContext context) {
     return _content(context);
@@ -22,7 +25,17 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget _content(context) {
     return KeyboardDismissOnTap(
       child: Scaffold(
-        appBar: AppBarWidget(),
+        appBar: AppBarWidget(
+          onPressed: () {
+            firebaseController.logout().then(
+                  (_) => Navigator.pushNamedAndRemoveUntil(
+                    context,
+                    '/login',
+                    (route) => false,
+                  ),
+                );
+          },
+        ),
         body: SingleChildScrollView(
           child: Observer(builder: (context) {
             return Padding(
@@ -136,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           child: TxtFormFieldWidget(
             onChanged: (String value) {},
-            labelText: "Valor",
+            labelText: "Valor que será convertido",
             initialValue: '1.00',
             keyboardType: TextInputType.number,
           ),
