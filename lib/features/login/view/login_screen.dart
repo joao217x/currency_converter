@@ -93,7 +93,7 @@ class LoginScreen extends StatelessWidget {
   }
 
   Widget _logInButton(context) {
-    final firebaseController = LoginFirebaseController();
+    final firebaseController = FirebaseController();
     final loginStore = Provider.of<LoginStore>(context, listen: false);
 
     return Row(
