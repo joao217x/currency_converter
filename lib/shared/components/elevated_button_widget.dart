@@ -15,6 +15,7 @@ class ElevatedButtonWidget extends StatelessWidget {
     return ElevatedButton(
       onPressed: onPressed,
       style: ElevatedButton.styleFrom(
+        backgroundColor: Colors.green.shade500,
         fixedSize: const Size.fromHeight(46),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(16),
