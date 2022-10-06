@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 
 class ErrorsController {
   static Future errorSnackbar(e, BuildContext context) async {
-    // print("Exception: $e");
     try {
       throw e;
     } on FirebaseAuthException catch (e) {

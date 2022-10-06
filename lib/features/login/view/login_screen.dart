@@ -28,11 +28,9 @@ class LoginScreen extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(horizontal: 30),
                 child: Column(
                   children: [
-                    const SizedBox(height: 80),
+                    const SizedBox(height: 100),
                     _appIconAndName(),
                     const SizedBox(height: 120),
-                    _logInLabel(context),
-                    const SizedBox(height: 15),
                     _emailField(context),
                     const SizedBox(height: 10),
                     _passwordField(context),
@@ -64,13 +62,6 @@ class LoginScreen extends StatelessWidget {
     );
   }
 
-  Widget _logInLabel(context) {
-    return const Text(
-      'LOGIN',
-      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-    );
-  }
-
   Widget _emailField(context) {
     final loginStore = Provider.of<LoginStore>(context, listen: false);
 
@@ -90,7 +81,7 @@ class LoginScreen extends StatelessWidget {
       onChanged: (String value) {
         loginStore.setPassword(value);
       },
-      labelText: 'Senha',
+      labelText: 'Password',
       obscureText: loginStore.isHidden,
       suffixIcon: IconButton(
         onPressed: loginStore.togglePasswordVisibility,
@@ -111,7 +102,7 @@ class LoginScreen extends StatelessWidget {
           child: ElevatedButtonWidget(
             child: loginStore.isLoading == true
                 ? LoadingWidget.loading
-                : const Text("ENTRAR"),
+                : const Text("LOGIN"),
             onPressed: () async {
               loginStore.setIsLoading(true);
               try {

@@ -66,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: const [
         Text(
-          "MOEDAS FAVORITAS",
+          "FAVORITE CURRENCIES",
           style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         ),
         Text(
@@ -79,20 +79,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _listHeader() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            "Moeda",
+            "Currency",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           const Text(
-            "Valor",
+            "Value on\nReais",
+            textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           const Text(
-            "Valor em\nReais",
+            "Converted\nValue",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
@@ -125,7 +126,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _requestDateTime() {
     return const Text(
-      'Última atualização: 00:00 - ??/??/????',
+      'Last update: 00:00 - 06/10/2022',
       style: TextStyle(color: Colors.grey),
     );
   }
@@ -136,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           child: ElevatedButtonWidget(
             onPressed: () {},
-            child: const Text("Adicionar nova moeda"),
+            child: const Text("Add new currency"),
           ),
         ),
       ],
@@ -149,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
         Expanded(
           child: TxtFormFieldWidget(
             onChanged: (String value) {},
-            labelText: "Valor que será convertido",
+            labelText: "Value to be converted",
             initialValue: '1.00',
             keyboardType: TextInputType.number,
           ),
@@ -158,7 +159,7 @@ class _HomeScreenState extends State<HomeScreen> {
         ElevatedButtonWidget(
           onPressed: () {},
           child: const Text(
-            "Atualizar\nValores",
+            "Update\nvalues",
             textAlign: TextAlign.center,
           ),
         )
