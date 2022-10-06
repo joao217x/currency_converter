@@ -26,15 +26,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return KeyboardDismissOnTap(
       child: Scaffold(
         appBar: AppBarWidget(
-          onPressed: () {
-            firebaseController.logout().then(
-                  (_) => Navigator.pushNamedAndRemoveUntil(
-                    context,
-                    '/login',
-                    (route) => false,
-                  ),
-                );
-          },
+          actions: [
+            IconButton(
+              onPressed: () {
+                firebaseController.logout().then(
+                      (_) => Navigator.pushNamedAndRemoveUntil(
+                        context,
+                        '/login',
+                        (route) => false,
+                      ),
+                    );
+              },
+              icon: const Icon(Icons.logout_rounded),
+            )
+          ],
         ),
         body: SingleChildScrollView(
           child: Observer(builder: (context) {
@@ -81,25 +86,29 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 5),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
             "Currency",
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
+          const SizedBox(width: 28),
           const Text(
             "Value on\nReais",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
+          const SizedBox(width: 37),
           const Text(
             "Converted\nValue",
             textAlign: TextAlign.center,
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
+          const SizedBox(width: 40),
           IconButton(
             icon: const Icon(Icons.dehaze),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/currencies');
+            },
           ),
         ],
       ),
@@ -108,26 +117,38 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _currenciesList() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: Column(
-        children: const [
-          Divider(thickness: 2),
-          CurrencyRow(),
-          Divider(thickness: 2),
-          CurrencyRow(),
-          Divider(thickness: 2),
-          CurrencyRow(),
-          Divider(thickness: 2),
-          CurrencyRow(),
+        children: [
+          CurrencyRow(
+            iconButton: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {},
+            ),
+          ),
+          const Divider(thickness: 2),
+          CurrencyRow(
+            iconButton: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {},
+            ),
+          ),
+          const Divider(thickness: 2),
+          CurrencyRow(
+            iconButton: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {},
+            ),
+          ),
+          const Divider(thickness: 2),
+          CurrencyRow(
+            iconButton: IconButton(
+              icon: const Icon(Icons.clear),
+              onPressed: () {},
+            ),
+          ),
         ],
       ),
-    );
-  }
-
-  Widget _requestDateTime() {
-    return const Text(
-      'Last update: 00:00 - 06/10/2022',
-      style: TextStyle(color: Colors.grey),
     );
   }
 
@@ -136,11 +157,20 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Expanded(
           child: ElevatedButtonWidget(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/currencies');
+            },
             child: const Text("Add new currency"),
           ),
         ),
       ],
+    );
+  }
+
+  Widget _requestDateTime() {
+    return const Text(
+      'Last update: 00:00 - 06/10/2022',
+      style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
     );
   }
 
