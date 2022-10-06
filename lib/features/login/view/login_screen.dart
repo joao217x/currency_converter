@@ -100,9 +100,6 @@ class LoginScreen extends StatelessWidget {
       children: [
         Expanded(
           child: ElevatedButtonWidget(
-            child: loginStore.isLoading == true
-                ? LoadingWidget.loading
-                : const Text("LOGIN"),
             onPressed: () async {
               loginStore.setIsLoading(true);
               try {
@@ -118,6 +115,9 @@ class LoginScreen extends StatelessWidget {
               }
               loginStore.setIsLoading(false);
             },
+            child: loginStore.isLoading == true
+                ? LoadingWidget.loading
+                : const Text("LOGIN"),
           ),
         ),
       ],

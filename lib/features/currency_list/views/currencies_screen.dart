@@ -1,3 +1,4 @@
+import 'package:currency_converter/features/currency_list/controllers/api_client_controller.dart';
 import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
 import 'package:currency_converter/shared/components/app_bar_widget.dart';
 import 'package:currency_converter/shared/components/currency_row_widget.dart';
@@ -14,6 +15,13 @@ class CurrenciesScreen extends StatefulWidget {
 
 class _CurrenciesScreenState extends State<CurrenciesScreen> {
   final firebaseController = LoginFirebaseController();
+  final apiClient = ApiClientController();
+
+  @override
+  void initState() {
+    super.initState();
+    apiClient.getCurrency();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -99,50 +107,50 @@ class _CurrenciesScreenState extends State<CurrenciesScreen> {
         children: [
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.star_border),
               onPressed: () {},
+              icon: const Icon(Icons.star_border),
             ),
           ),
         ],

@@ -1,3 +1,5 @@
+import 'dart:developer';
+import 'package:currency_converter/features/currency_list/controllers/api_client_controller.dart';
 import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
 import 'package:currency_converter/shared/components/app_bar_widget.dart';
 import 'package:currency_converter/shared/components/currency_row_widget.dart';
@@ -16,6 +18,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final firebaseController = LoginFirebaseController();
+  final apiClient = ApiClientController();
+
+  @override
+  void initState() {
+    super.initState();
+    apiClient.getCurrency();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,10 +114,10 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           const SizedBox(width: 40),
           IconButton(
-            icon: const Icon(Icons.dehaze),
             onPressed: () {
               Navigator.pushNamed(context, '/currencies');
             },
+            icon: const Icon(Icons.dehaze),
           ),
         ],
       ),
@@ -122,29 +131,29 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.clear),
               onPressed: () {},
+              icon: const Icon(Icons.clear),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.clear),
               onPressed: () {},
+              icon: const Icon(Icons.clear),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.clear),
               onPressed: () {},
+              icon: const Icon(Icons.clear),
             ),
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              icon: const Icon(Icons.clear),
               onPressed: () {},
+              icon: const Icon(Icons.clear),
             ),
           ),
         ],
@@ -187,7 +196,10 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         const SizedBox(width: 10),
         ElevatedButtonWidget(
-          onPressed: () {},
+          onPressed: () {
+            final result = apiClient.getCurrency();
+            inspect(result);
+          },
           child: const Text(
             "Update\nvalues",
             textAlign: TextAlign.center,
