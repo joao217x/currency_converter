@@ -1,7 +1,7 @@
-import 'package:currency_converter/features/currency_list/controllers/api_client_controller.dart';
 import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
 import 'package:currency_converter/shared/components/app_bar_widget.dart';
 import 'package:currency_converter/shared/components/currency_row_widget.dart';
+import 'package:currency_converter/shared/services/currency_api/controller/api_client_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';

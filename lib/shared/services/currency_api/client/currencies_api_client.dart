@@ -1,4 +1,4 @@
-import 'package:currency_converter/features/currency_list/models/all_currencies_model.dart';
+import 'package:currency_converter/shared/services/currency_api/models/all_currencies_model.dart';
 import 'package:dio/dio.dart';
 
 class CurrenciesApiClient {

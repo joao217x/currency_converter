@@ -1,4 +1,4 @@
-import 'package:currency_converter/features/currency_list/models/currency_model.dart';
+import 'package:currency_converter/shared/services/currency_api/models/currency_model.dart';
 
 class AllCurrenciesModel {
   CurrencyModel? uSDBRL;

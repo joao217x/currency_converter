@@ -1,5 +1,5 @@
-import 'package:currency_converter/features/currency_list/models/all_currencies_model.dart';
-import 'package:currency_converter/features/currency_list/services/currencies_api_client.dart';
+import 'package:currency_converter/shared/services/currency_api/client/currencies_api_client.dart';
+import 'package:currency_converter/shared/services/currency_api/models/all_currencies_model.dart';
 import 'package:mobx/mobx.dart';
 part 'api_client_controller.g.dart';
 
