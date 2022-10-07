@@ -2,10 +2,16 @@ import 'package:flutter/material.dart';
 
 class CurrencyRow extends StatelessWidget {
   final IconButton iconButton;
+  final String symbol;
+  final String currencyValue;
+  final String currencyConverted;
 
   const CurrencyRow({
     Key? key,
     required this.iconButton,
+    required this.symbol,
+    required this.currencyValue,
+    required this.currencyConverted,
   }) : super(key: key);
 
   @override
@@ -13,9 +19,9 @@ class CurrencyRow extends StatelessWidget {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        const Text("Sigla"),
-        const Text("US20,00"),
-        const Text("RS20,00"),
+        Text(symbol),
+        Text(currencyValue, textAlign: TextAlign.start),
+        Text(currencyConverted),
         iconButton,
       ],
     );
