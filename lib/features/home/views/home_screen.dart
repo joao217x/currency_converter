@@ -1,5 +1,4 @@
-import 'dart:developer';
-import 'package:currency_converter/features/login/controllers/login_firebase_controller.dart';
+import 'package:currency_converter/shared/services/firebase/controller/firebase_controller.dart';
 import 'package:currency_converter/shared/components/app_bar_widget.dart';
 import 'package:currency_converter/shared/components/currency_row_widget.dart';
 import 'package:currency_converter/shared/components/elevated_button_widget.dart';
@@ -7,7 +6,6 @@ import 'package:currency_converter/shared/components/txt_form_field_widget.dart'
 import 'package:currency_converter/shared/services/currency_api/controller/api_client_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_keyboard_visibility/flutter_keyboard_visibility.dart';
-import 'package:flutter_mobx/flutter_mobx.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,13 +15,13 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final firebaseController = LoginFirebaseController();
-  final apiClient = ApiClientController();
+  final firebaseController = FirebaseController();
+  final apiController = CurrenciesApiController();
 
   @override
   void initState() {
     super.initState();
-    apiClient.getCurrency();
+    apiController.loadData(); // não funciona
   }
 
   @override
@@ -51,25 +49,23 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         body: SingleChildScrollView(
-          child: Observer(builder: (context) {
-            return Padding(
-              padding: const EdgeInsets.all(30),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  _favoritesTitle(),
-                  const SizedBox(height: 20),
-                  _listHeader(),
-                  _currenciesList(),
-                  _addCurrencyButton(),
-                  const SizedBox(height: 5),
-                  _requestDateTime(),
-                  const SizedBox(height: 20),
-                  _calculator(),
-                ],
-              ),
-            );
-          }),
+          child: Padding(
+            padding: const EdgeInsets.all(30),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _favoritesTitle(),
+                const SizedBox(height: 20),
+                _listHeader(),
+                _currenciesList(),
+                _addCurrencyButton(),
+                const SizedBox(height: 5),
+                _requestDateTime(),
+                const SizedBox(height: 20),
+                _calculator(),
+              ],
+            ),
+          ),
         ),
       ),
     );
@@ -117,7 +113,8 @@ class _HomeScreenState extends State<HomeScreen> {
             onPressed: () {
               Navigator.pushNamed(context, '/currencies');
             },
-            icon: const Icon(Icons.dehaze),
+            icon: const Icon(Icons.dehaze_rounded),
+            color: Colors.green.shade500,
           ),
         ],
       ),
@@ -131,30 +128,50 @@ class _HomeScreenState extends State<HomeScreen> {
         children: [
           CurrencyRow(
             iconButton: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.clear),
+              onPressed: () {
+                // botão para remover dos favoritos
+              },
+              icon: const Icon(Icons.clear_rounded),
             ),
+            symbol: 'Sigla',
+            currencyValue: 'R\$', // get da cotação
+            currencyConverted: 'R\$', // método de conversão
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.clear),
+              onPressed: () {
+                // botão para remover dos favoritos
+              },
+              icon: const Icon(Icons.clear_rounded),
             ),
+            symbol: 'Sigla',
+            currencyValue: 'R\$', // get da cotação
+            currencyConverted: 'R\$', // método de conversão
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.clear),
+              onPressed: () {
+                // botão para remover dos favoritos
+              },
+              icon: const Icon(Icons.clear_rounded),
             ),
+            symbol: 'Sigla',
+            currencyValue: 'R\$', // get da cotação
+            currencyConverted: 'R\$', // método de conversão
           ),
           const Divider(thickness: 2),
           CurrencyRow(
             iconButton: IconButton(
-              onPressed: () {},
-              icon: const Icon(Icons.clear),
+              onPressed: () {
+                // botão para remover dos favoritos
+              },
+              icon: const Icon(Icons.clear_rounded),
             ),
+            symbol: 'Sigla',
+            currencyValue: 'R\$', // get da cotação
+            currencyConverted: 'R\$', // método de conversão
           ),
         ],
       ),
@@ -162,24 +179,27 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _addCurrencyButton() {
-    return Row(
-      children: [
-        Expanded(
-          child: ElevatedButtonWidget(
-            onPressed: () {
-              Navigator.pushNamed(context, '/currencies');
-            },
-            child: const Text("Add new currency"),
+    return Padding(
+      padding: const EdgeInsets.only(top: 5),
+      child: Row(
+        children: [
+          Expanded(
+            child: ElevatedButtonWidget(
+              onPressed: () {
+                Navigator.pushNamed(context, '/currencies');
+              },
+              child: const Text("Add new currency"),
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   Widget _requestDateTime() {
-    return const Text(
-      'Last update: 00:00 - 06/10/2022',
-      style: TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
+    return Text(
+      'Last update: ' + apiController.getResult!.cnyBrl.createDate,
+      style: const TextStyle(color: Colors.grey, fontStyle: FontStyle.italic),
     );
   }
 
@@ -188,7 +208,9 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Expanded(
           child: TxtFormFieldWidget(
-            onChanged: (String value) {},
+            onChanged: (String value) {
+              // armazenamento do numero
+            },
             labelText: "Value to be converted",
             initialValue: '1.00',
             keyboardType: TextInputType.number,
@@ -197,8 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
         const SizedBox(width: 10),
         ElevatedButtonWidget(
           onPressed: () {
-            final result = apiClient.getCurrency();
-            inspect(result);
+            // método que pega o valor da calculadora e multiplica pela cotação
           },
           child: const Text(
             "Update\nvalues",

@@ -14,4 +14,8 @@ class CurrenciesApiController {
     }
     return getResult;
   }
+
+  Future<void> loadData() async {
+    await getCurrency();
+  }
 }
